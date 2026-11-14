@@ -1,0 +1,18 @@
+
+# Sum of 1 to N Using Recursion
+
+# Recursive function
+def sum_n(n):
+    if n == 0:
+        return 0
+    else:
+        return n + sum_n(n - 1)
+
+# Get input from user
+n = int(input("Enter a number: "))
+
+# Calculate sum
+result = sum_n(n)
+
+# Display output
+print("Sum of natural numbers from 1 to", n, "is:", result)
