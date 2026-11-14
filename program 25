@@ -1,0 +1,49 @@
+
+# Best First Search Algorithm
+
+import heapq
+
+# Graph with heuristic values
+graph = {
+    'S': [('A', 4), ('B', 2), ('C', 5)],
+    'A': [('D', 3)],
+    'B': [('D', 1), ('E', 3)],
+    'C': [('E', 2)],
+    'D': [('G', 0)],
+    'E': [('G', 0)],
+    'G': []
+}
+
+# Best First Search Function
+def best_first_search(start, goal):
+    visited = set()
+    priority_queue = []
+
+    heapq.heappush(priority_queue, (0, start, [start]))
+
+    while priority_queue:
+        h, node, path = heapq.heappop(priority_queue)
+
+        if node in visited:
+            continue
+
+        print("Visiting:", node)
+        visited.add(node)
+
+        # Check goal
+        if node == goal:
+            print("\nBest Path:", path)
+            return
+
+        # Explore neighbours
+        for neighbor, heuristic in graph[node]:
+            if neighbor not in visited:
+                heapq.heappush(
+                    priority_queue,
+                    (heuristic, neighbor, path + [neighbor])
+                )
+
+    print("Goal not found")
+
+# Execute program
+best_first_search('S', 'G')
