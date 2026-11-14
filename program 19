@@ -1,0 +1,68 @@
+
+# Planet Knowledge Representation System
+
+print("PLANET KNOWLEDGE SYSTEM")
+print("-----------------------")
+
+# Knowledge Base
+planets = {
+    "mercury": {
+        "position": 1,
+        "type": "Terrestrial",
+        "moon": 0
+    },
+    "venus": {
+        "position": 2,
+        "type": "Terrestrial",
+        "moon": 0
+    },
+    "earth": {
+        "position": 3,
+        "type": "Terrestrial",
+        "moon": 1
+    },
+    "mars": {
+        "position": 4,
+        "type": "Terrestrial",
+        "moon": 2
+    },
+    "jupiter": {
+        "position": 5,
+        "type": "Gas Giant",
+        "moon": 101
+    },
+    "saturn": {
+        "position": 6,
+        "type": "Gas Giant",
+        "moon": 146
+    },
+    "uranus": {
+        "position": 7,
+        "type": "Ice Giant",
+        "moon": 28
+    },
+    "neptune": {
+        "position": 8,
+        "type": "Ice Giant",
+        "moon": 16
+    }
+}
+
+# Logical inference
+planet = input("Enter a planet name: ").lower()
+
+if planet in planets:
+    print("\nPlanet Name:", planet.capitalize())
+    print("Position from Sun:", planets[planet]["position"])
+    print("Planet Type:", planets[planet]["type"])
+    print("Number of Moons:", planets[planet]["moon"])
+
+    if planets[planet]["position"] <= 4:
+        print("Inference: Inner Planet")
+    else:
+        print("Inference: Outer Planet")
+
+else:
+    print("Planet not found in the knowledge base.")
+
+print("\nSearch completed!")
