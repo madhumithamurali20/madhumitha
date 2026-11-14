@@ -1,0 +1,44 @@
+
+# Backward Chaining Algorithm
+
+# Available symptoms (facts)
+facts = {
+    "fever",
+    "cough",
+    "headache"
+}
+
+# Rules: Disease and its symptoms
+rules = {
+    "flu": ["fever", "cough", "headache"],
+    "common_cold": ["cough", "sneezing"],
+    "malaria": ["fever", "chills", "headache"]
+}
+
+# Backward Chaining Function
+def backward_chaining(goal):
+    print("Checking:", goal)
+
+    if goal in facts:
+        return True
+
+    if goal in rules:
+        for condition in rules[goal]:
+            if not backward_chaining(condition):
+                return False
+        return True
+
+    return False
+
+# Goal
+goal = "flu"
+
+# Execute
+if backward_chaining(goal):
+    print("\nConclusion: Possible disease is", goal)
+else:
+    print("\nConclusion: Disease not identified")
+
+
+# Note: This is a simplified educational example,
+# not a real medical diagnosis.
