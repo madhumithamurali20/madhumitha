@@ -1,0 +1,43 @@
+
+# Birds Fly Knowledge Base
+
+# Parent class
+class Bird:
+    def __init__(self, name):
+        self.name = name
+
+    def fly(self):
+        return "Can fly"
+
+
+# Child classes
+class Sparrow(Bird):
+    pass
+
+
+class Parrot(Bird):
+    pass
+
+
+class Penguin(Bird):
+    def fly(self):
+        return "Cannot fly"
+
+
+class Ostrich(Bird):
+    def fly(self):
+        return "Cannot fly"
+
+
+# Main program
+print("BIRDS FLY KNOWLEDGE BASE")
+
+birds = [
+    Sparrow("Sparrow"),
+    Parrot("Parrot"),
+    Penguin("Penguin"),
+    Ostrich("Ostrich")
+]
+
+for bird in birds:
+    print(bird.name, ":", bird.fly())
