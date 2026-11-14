@@ -1,0 +1,22 @@
+
+# Vowel Identification Using Rule-Based Logic
+
+# Get input from user
+sentence = input("Enter a sentence: ")
+
+# Define vowels
+vowels = "aeiouAEIOU"
+
+# Initialize count
+count = 0
+
+print("\nVowels in the given sentence:")
+
+# Check each character
+for ch in sentence:
+    if ch in vowels:
+        print(ch)
+        count += 1
+
+# Display total number of vowels
+print("\nTotal number of vowels:", count)
