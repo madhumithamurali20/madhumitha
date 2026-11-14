@@ -1,0 +1,61 @@
+
+# Person DOB Knowledge Base
+
+from datetime import date, datetime
+
+print("PERSON DOB KNOWLEDGE BASE")
+print("-------------------------")
+
+# Knowledge Base (Sample Records)
+persons = {
+    "2000-05-15": {
+        "name": "Arun",
+        "city": "Chennai"
+    },
+    "2002-08-20": {
+        "name": "Priya",
+        "city": "Madurai"
+    },
+    "2005-12-10": {
+        "name": "Kumar",
+        "city": "Coimbatore"
+    }
+}
+
+# Get date of birth from user
+dob = input("Enter Date of Birth (YYYY-MM-DD): ")
+
+print("\n--- PERSON DETAILS ---")
+
+# Logical reasoning
+if dob in persons:
+
+    person = persons[dob]
+
+    birth_date = datetime.strptime(
+        dob, "%Y-%m-%d"
+    ).date()
+
+    today = date.today()
+
+    age = today.year - birth_date.year
+
+    if (today.month, today.day) < (
+        birth_date.month, birth_date.day
+    ):
+        age -= 1
+
+    print("Name:", person["name"])
+    print("Date of Birth:", dob)
+    print("City:", person["city"])
+    print("Age:", age)
+
+    if age < 18:
+        print("Category: Minor")
+    else:
+        print("Category: Adult")
+
+else:
+    print("No matching person found in database.")
+
+print("\nSearch completed!")
