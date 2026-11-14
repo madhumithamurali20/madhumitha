@@ -1,0 +1,42 @@
+import heapq
+def uniform_cost_search(graph, start, goal):
+    priority_queue = [(0, start, [start])]
+    visited = set()
+    while priority_queue:
+        cost, node, path = heapq.heappop(priority_queue)
+        if node == goal:
+            print("Least Cost Path:", " -> ".join(path))
+            print("Minimum Transportation Cost:", cost)
+            return
+        if node not in visited:
+            visited.add(node)
+            for neighbour, weight in graph[node]:
+                if neighbour not in visited:
+                    heapq.heappush(
+                        priority_queue,
+                        (cost + weight, neighbour, path + [neighbour])
+                    )
+
+    print("No path found!")
+graph = {
+    'A': [('B', 4), ('C', 2)],
+    'B': [('D', 5), ('E', 3)],
+    'C': [('D', 8), ('E', 6)],
+    'D': [('F', 2)],
+    'E': [('F', 1)],
+    'F': []
+}
+start = 'A'
+goal = 'F'
+print("Uniform Cost Search Algorithm")
+uniform_cost_search(graph, start, goal)
+
+
+
+
+
+
+
+
+
+
