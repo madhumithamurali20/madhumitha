@@ -1,0 +1,49 @@
+
+print("DIET RECOMMENDATION EXPERT SYSTEM")
+
+# Get user details
+age = int(input("Enter your age: "))
+bmi_status = input("Enter BMI status (Below/Healthy/Above): ").lower()
+health = input("Enter health condition (Normal/Diabetes/Anemia): ").lower()
+
+print("\n--- DIET RECOMMENDATION ---")
+
+# Age-based recommendation
+if age < 18:
+    print("Age Group: Teenager")
+    print("Recommendation: Eat balanced meals for growth.")
+
+elif age < 60:
+    print("Age Group: Adult")
+    print("Recommendation: Include fruits, vegetables and proteins.")
+
+else:
+    print("Age Group: Senior Citizen")
+    print("Recommendation: Choose balanced and nutritious meals.")
+
+# BMI status-based guidance
+if bmi_status == "below":
+    print("BMI Guidance: Consult a healthcare professional.")
+elif bmi_status == "healthy":
+    print("BMI Guidance: Maintain balanced eating habits.")
+elif bmi_status == "above":
+    print("BMI Guidance: Seek professional nutrition advice.")
+else:
+    print("Invalid BMI status.")
+
+# Health condition-based recommendations
+if health == "diabetes":
+    print("Diet: Follow a diabetes-friendly meal plan.")
+    print("Choose fiber-rich foods and follow medical advice.")
+
+elif health == "anemia":
+    print("Diet: Include iron-rich foods.")
+    print("Include beans, leafy vegetables and iron-rich foods.")
+
+elif health == "normal":
+    print("Diet: Include fruits, vegetables, grains and proteins.")
+
+else:
+    print("Consult a healthcare professional for guidance.")
+
+print("\nEat a balanced diet and stay healthy!")
