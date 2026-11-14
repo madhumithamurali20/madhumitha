@@ -1,0 +1,43 @@
+
+# Family Knowledge Representation
+
+# Facts
+father = {
+    "Ravi": "Arun",
+    "Ravi": "Kumar",
+    "Arun": "Rahul"
+}
+
+mother = {
+    "Meena": "Arun",
+    "Meena": "Kumar",
+    "Priya": "Rahul"
+}
+
+# Family relationship functions
+
+def is_father(person1, person2):
+    return father.get(person1) == person2
+
+def is_mother(person1, person2):
+    return mother.get(person1) == person2
+
+def is_parent(person1, person2):
+    return is_father(person1, person2) or is_mother(person1, person2)
+
+# Display relationships
+print("FAMILY KNOWLEDGE REPRESENTATION")
+
+print("\nFather relationships:")
+for p1, p2 in father.items():
+    print(p1, "is father of", p2)
+
+print("\nMother relationships:")
+for p1, p2 in mother.items():
+    print(p1, "is mother of", p2)
+
+print("\nParent relationships:")
+for person1 in set(father.keys()) | set(mother.keys()):
+    for person2 in set(father.values()) | set(mother.values()):
+        if is_parent(person1, person2):
+            print(person1, "is parent of", person2)
