@@ -1,0 +1,42 @@
+
+# Forward Chaining Algorithm
+
+# Initial facts
+facts = {
+    "computer_not_working",
+    "power_on",
+    "screen_black"
+}
+
+# Rules
+rules = [
+    ({"power_on", "screen_black"}, "display_problem"),
+    ({"computer_not_working", "display_problem"}, "monitor_fault"),
+    ({"computer_not_working", "power_on"}, "system_fault"),
+    ({"system_fault", "monitor_fault"}, "computer_fault")
+]
+
+# Forward Chaining
+def forward_chaining(facts, rules):
+    new_fact_added = True
+
+    while new_fact_added:
+        new_fact_added = False
+
+        for condition, conclusion in rules:
+            if condition.issubset(facts):
+                if conclusion not in facts:
+                    facts.add(conclusion)
+                    print("New Fact Derived:", conclusion)
+                    new_fact_added = True
+
+    return facts
+
+# Execute program
+print("Initial Facts:", facts)
+
+result = forward_chaining(facts, rules)
+
+print("\nFinal Conclusions:")
+for fact in sorted(result):
+    print(fact)
