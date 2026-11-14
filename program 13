@@ -1,0 +1,45 @@
+import numpy as np
+from sklearn.neural_network import MLPClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import accuracy_score
+X = np.array([
+    [25, 120, 90],
+    [45, 140, 160],
+    [35, 130, 110],
+    [50, 150, 180],
+    [28, 110, 95],
+    [60, 160, 200],
+    [40, 135, 150],
+    [30, 115, 100],
+    [55, 155, 190],
+    [48, 145, 170]
+])
+y = np.array([0, 1, 0, 1, 0, 1, 1, 0, 1, 1])
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+model = MLPClassifier(
+    hidden_layer_sizes=(5,),
+    max_iter=2000,
+    random_state=42
+)
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print("Actual Values:", y_test)
+print("Predicted Values:", y_pred)
+print("Model Accuracy:", accuracy * 100, "%")
+new_patient = np.array([[45, 140, 160]])
+new_patient = scaler.transform(new_patient)
+
+prediction = model.predict(new_patient)
+if prediction[0] == 1:
+    print("Prediction: Disease Detected")
+else:
+    print("Prediction: No Disease Detected")
+
+
