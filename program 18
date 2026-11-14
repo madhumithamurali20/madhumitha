@@ -1,0 +1,26 @@
+
+# Fruit Color Classification using Production Rules
+
+print("FRUIT COLOR CLASSIFICATION SYSTEM")
+print("---------------------------------")
+
+# Get fruit color from user
+color = input("Enter the fruit color (red/yellow/green/orange): ").lower()
+
+# Production rules
+if color == "red":
+    print("Fruit identified: Apple or Cherry")
+
+elif color == "yellow":
+    print("Fruit identified: Banana")
+
+elif color == "green":
+    print("Fruit identified: Green Apple")
+
+elif color == "orange":
+    print("Fruit identified: Orange")
+
+else:
+    print("Unknown fruit color")
+
+print("\nClassification completed!")
