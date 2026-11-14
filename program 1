@@ -1,0 +1,38 @@
+def bfs(graph, start, goal):
+    visited = set()
+    queue = deque([(start, [start])])
+
+    while queue:
+        node, path = queue.popleft()
+
+        if node not in visited:
+            visited.add(node)
+            print(node, end=" ")
+
+            if node == goal:
+                print("\nShortest Path:", " -> ".join(path))
+                return
+
+            for neighbor in graph[node]:
+                if neighbor not in visited:
+                    queue.append((neighbor, path + [neighbor]))
+
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': [],
+    'F': []
+}
+
+print("BFS Traversal:")
+bfs(graph, 'A', 'F')
+
+
+
+
+
+
+
+
