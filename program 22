@@ -1,0 +1,59 @@
+
+from collections import deque
+
+# Initial state
+# (Monkey position, Box position, On box, Has banana)
+
+initial_state = (0, 1, False, False)
+
+# Positions: 0 = Door, 1 = Middle, 2 = Window
+
+def monkey_banana():
+    queue = deque([(initial_state, [])])
+    visited = set()
+
+    while queue:
+        state, path = queue.popleft()
+
+        if state in visited:
+            continue
+
+        visited.add(state)
+
+        monkey, box, on_box, banana = state
+
+        # Goal condition
+        if banana:
+            print("Optimal Action Plan:")
+            for action in path:
+                print(action)
+            print("Monkey successfully retrieved the banana!")
+            return
+
+        # Action 1: Push the box
+        if not on_box and abs(monkey - box) == 1:
+            for direction in [-1, 1]:
+                new_box = box + direction
+
+                if 0 <= new_box <= 2:
+                    new_state = (box, new_box, False, False)
+                    queue.append((new_state, path + ["Push the box"]))
+
+        # Action 2: Climb the box
+        if monkey == box and not on_box:
+            new_state = (monkey, box, True, False)
+            queue.append((new_state, path + ["Climb onto the box"]))
+
+        # Action 3: Grasp the banana
+        if on_box and monkey == box == 2:
+            new_state = (monkey, box, True, True)
+            queue.append((new_state, path + ["Grasp the banana"]))
+
+        # Action 4: Walk
+        if not on_box:
+            for new_position in range(3):
+                if new_position != box and new_position != monkey:
+                    new_state = (new_position, box, False, False)
+                    queue.append((new_state, path + ["Walk to position " + str(new_position)]))
+
+monkey_banana()
