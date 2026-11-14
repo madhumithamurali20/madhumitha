@@ -1,0 +1,38 @@
+
+# Pattern Recognition using AI
+
+from sklearn.datasets import load_digits
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+
+# Load image dataset
+digits = load_digits()
+
+# Input data and labels
+X = digits.data
+y = digits.target
+
+# Split dataset into training and testing
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Create AI model
+model = KNeighborsClassifier(n_neighbors=3)
+
+# Train the model
+model.fit(X_train, y_train)
+
+# Predict patterns
+y_pred = model.predict(X_test)
+
+# Calculate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+
+# Display results
+print("PATTERN RECOGNITION")
+print("-------------------")
+print("Actual Pattern:", y_test[0])
+print("Recognized Pattern:", y_pred[0])
+print("Accuracy:", accuracy * 100, "%")
