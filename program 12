@@ -1,0 +1,18 @@
+from sklearn.tree import DecisionTreeClassifier
+X = [
+    [50000, 750, 1],
+    [30000, 550, 0],
+    [60000, 800, 1],
+    [25000, 500, 0],
+    [45000, 700, 1],
+    [20000, 450, 0]
+]
+y = [1, 0, 1, 0, 1, 0]
+model = DecisionTreeClassifier(random_state=0)
+model.fit(X, y)
+new_customer = [[55000, 780, 1]]
+prediction = model.predict(new_customer)
+if prediction[0] == 1:
+    print("Loan Application Approved")
+else:
+    print("Loan Application Rejected")
